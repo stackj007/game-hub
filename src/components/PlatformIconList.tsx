@@ -1,4 +1,4 @@
-import { Icon } from '@chakra-ui/react'
+import { HStack, Icon } from '@chakra-ui/react'
 import { Platform } from '../hooks/useGames'
 import { IconType } from 'react-icons'
 
@@ -34,9 +34,17 @@ const PlatformIconList = ({ platforms }: Props) => {
 
   return (
     <>
-      {platforms.map((platform) => (
-        <Icon as={iconMap[platform.slug]} />
-      ))}
+      <HStack marginY={2}>
+        {platforms.map((platform) => (
+          <Icon
+            as={iconMap[platform.slug]}
+            color="gray.500"
+            fontSize={
+              platform.slug === 'nintendo' ? '54px' : '24px'
+            }
+          />
+        ))}
+      </HStack>
     </>
   )
 }
