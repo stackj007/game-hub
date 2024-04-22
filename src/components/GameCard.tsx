@@ -9,6 +9,7 @@ import { Game } from '../hooks/useGames'
 import PlatformIconList from './PlatformIconList'
 import CriticScore from './CriticScore'
 import cropImageUrl from '../services/image-url'
+import BoxContainer from './BoxContainer'
 
 interface props {
   game: Game
@@ -16,20 +17,22 @@ interface props {
 
 const GameCard = ({ game }: props) => {
   return (
-    <Card width="100%" borderRadius={10} overflow="hidden">
-      <Image src={cropImageUrl(game.background_image)} />
-      <CardBody>
-        <Heading fontSize="2xl">{game.name}</Heading>
-        <HStack justifyContent="space-between">
-          <PlatformIconList
-            platforms={game.parent_platforms.map(
-              (p) => p.platform
-            )}
-          />
-          <CriticScore score={game.metacritic} />
-        </HStack>
-      </CardBody>
-    </Card>
+    <BoxContainer>
+      <Card>
+        <Image src={cropImageUrl(game.background_image)} />
+        <CardBody>
+          <Heading fontSize="2xl">{game.name}</Heading>
+          <HStack justifyContent="space-between">
+            <PlatformIconList
+              platforms={game.parent_platforms.map(
+                (p) => p.platform
+              )}
+            />
+            <CriticScore score={game.metacritic} />
+          </HStack>
+        </CardBody>
+      </Card>
+    </BoxContainer>
   )
 }
 
