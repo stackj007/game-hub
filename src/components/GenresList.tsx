@@ -4,18 +4,24 @@ import useGenres, { Genre } from '../hooks/useGenres'
 // prop for passing a callback function
 interface props {
   onGenreSelect: (genre: Genre) => void
+  selectedGenre: Genre | null
 }
 
-const GenresList = ({ onGenreSelect }: props) => {
+const GenresList = ({ selectedGenre, onGenreSelect }: props) => {
   const { data } = useGenres()
 
   return (
     <List>
       {data.map((genre) => (
-        <ListItem key={genre.id} paddingY={1} borderRadius={5}>
-          <HStack>
-            <Image src={genre.image_background} borderRadius={8} boxSize="34px" />
-            <Button onClick={() => onGenreSelect(genre)} variant={'link'} fontSize="lg">
+        <ListItem key={genre.id} paddingY={2} borderRadius={5}>
+          <HStack spacing={3}>
+            <Image src={genre.image_background} borderRadius={6} boxSize="43px" />
+
+            <Button
+              fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
+              onClick={() => onGenreSelect(genre)}
+              variant={'link'}
+            >
               {genre.name}
             </Button>
           </HStack>
