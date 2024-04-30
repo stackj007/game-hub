@@ -1,7 +1,7 @@
 import { Button, HStack, Image, List, ListItem } from '@chakra-ui/react'
 import useGenres, { Genre } from '../hooks/useGenres'
 
-// prop for passing a callback function
+
 interface props {
   onGenreSelect: (genre: Genre) => void
   selectedGenre: Genre | null
